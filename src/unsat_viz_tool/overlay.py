@@ -9,9 +9,6 @@ EFFECT_RE = re.compile(r"^([A-Za-z_][A-Za-z0-9_]*)\((.*)\)$")
 
 
 HIGHLIGHT_RULES = """
-:- violated_node(X), not node(X).
-:- violated_edge(E), not edge(E).
-
 attr(edge, E, color, red) :-
     edge(E),
     violated_edge(E).
@@ -24,7 +21,11 @@ attr(node, X, color, red) :-
     node(X),
     violated_node(X).
 
-attr(node, X, penwidth, 5) :-
+attr(node, X, penwidth, 4) :-
+    node(X),
+    violated_node(X).
+
+attr(node, X, peripheries, 2) :-
     node(X),
     violated_node(X).
 """.strip()

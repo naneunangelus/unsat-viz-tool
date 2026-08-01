@@ -241,6 +241,12 @@ def solve_relaxed_program_one(
     if selected_model is None:
         raise RuntimeError("Clingo returned no answer set.")
 
+    selected_model = CapturedModel(
+        symbols=selected_model.symbols,
+        cost=selected_model.cost,
+        optimality_proven=result.exhausted,
+    )
+
     return selected_model
 
 

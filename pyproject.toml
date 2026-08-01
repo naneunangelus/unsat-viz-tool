@@ -1,0 +1,10 @@
+[project]
+name = "unsat_viz_tool"
+version = "0.1.0"
+description = "Explain ASP unsatisfiability via visualization"
+dependencies = [
+    "clingo"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

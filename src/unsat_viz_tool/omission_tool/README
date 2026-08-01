@@ -1,0 +1,22 @@
+ 
+- need to have clingo installed
+- for now, uses the gringo-3.0.3-x86-linux binary
+
+python compute_max_omission.py <graph_facts> <encoding> <omission_type> <omit-pred>
+
+         
+<graph_facts> : a file containing facts
+                example: graph_ex.lp
+
+<encoding> :   the domain encoding, extended with "omitted" atoms
+                
+<omission_type> : 2 - do omission on atoms with given predicates in <omit-pred>
+                  3 - do omission on atoms with given predicates in <omit-pred> with omission dependency (if arg(X) is omitted in(X),out(X),defeated(X),ndefended(X) is also omitted)
+                
+        
+<omit-pred> : list of predicates to omit (e.g., att,arg,in,out)
+              also need to set <omission_type>=2
+              
+              
+Example:
+            python compute_max_omission.py graph_ex.lp graphcoloring.lp 3 node  --> do omission on node with omission dependency (infer_omitted_atoms.lp is needed to describe the dependency)

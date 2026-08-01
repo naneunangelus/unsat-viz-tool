@@ -215,9 +215,7 @@ python -m unsat_viz_tool.cli overlay \
 
 ```bash
 python -m unsat_viz_tool.cli render \
-  --instance examples/graph_coloring/graph_ex.lp \
-  --omission out/graph_coloring/graph_ex/omission/omission_result.lp \
-  --cleaned-encoding out/graph_coloring/graph_ex/transform/cleaned_encoding.lp \
+  --model out/graph_coloring/graph_ex/solve/selected_model.lp \
   --viz examples/graph_coloring/viz.lp \
   --overlay out/graph_coloring/graph_ex/overlay/overlay.lp \
   --out-dir out/graph_coloring/graph_ex/render \

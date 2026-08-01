@@ -37,13 +37,20 @@ def main() -> None:
     overlay_parser.add_argument("--out", required=True)
 
     render_parser = subparsers.add_parser("render")
-    render_parser.add_argument("--instance", required=True)
-    render_parser.add_argument("--omission", required=True)
-    render_parser.add_argument("--cleaned-encoding", required=True)
+    render_parser.add_argument(
+        "--model",
+        required=True,
+        help="Complete answer-set snapshot written by the solve stage.",
+    )
     render_parser.add_argument("--viz", required=True)
     render_parser.add_argument("--overlay", required=True)
     render_parser.add_argument("--out-dir", required=True)
     render_parser.add_argument("--format", default="png")
+    render_parser.add_argument(
+        "--engine",
+        default="neato",
+        help="Graphviz layout engine.",
+    )
 
     args = parser.parse_args()
 
@@ -80,13 +87,12 @@ def main() -> None:
 
     elif args.command == "render":
         render_graph(
-            instance_path=args.instance,
-            omission_path=args.omission,
-            cleaned_encoding_path=args.cleaned_encoding,
+            model_path=args.model,
             viz_path=args.viz,
             overlay_path=args.overlay,
             out_dir=args.out_dir,
             output_format=args.format,
+            engine=args.engine,
         )
         print(f"Rendered graph to {args.out_dir}")
 

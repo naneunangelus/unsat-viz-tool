@@ -9,19 +9,25 @@ EFFECT_RE = re.compile(r"^([A-Za-z_][A-Za-z0-9_]*)\((.*)\)$")
 
 
 HIGHLIGHT_RULES = """
-attr(edge, (X,Y), color, red) :-
-    violated_edge((X,Y)).
+:- violated_node(X), not node(X).
+:- violated_edge(E), not edge(E).
 
-attr(edge, (X,Y), penwidth, 5) :-
-    violated_edge((X,Y)).
+attr(edge, E, color, red) :-
+    edge(E),
+    violated_edge(E).
+
+attr(edge, E, penwidth, 5) :-
+    edge(E),
+    violated_edge(E).
 
 attr(node, X, color, red) :-
+    node(X),
     violated_node(X).
 
 attr(node, X, penwidth, 5) :-
+    node(X),
     violated_node(X).
 """.strip()
-
 
 OMITTED_STYLE_RULES = """
 attr(node, X, fillcolor, lightgray) :-
@@ -39,15 +45,23 @@ attr(node, X, fontcolor, gray) :-
     omitted(node(X)),
     not violated_node(X).
 
-attr(edge, (X,Y), color, lightgray) :-
-    edge((X,Y)),
-    omitted(link(X,Y)),
-    not violated_edge((X,Y)).
+attr(edge, E, color, lightgray) :-
+    edge(E),
+    omitted_edge(E),
+    not violated_edge(E).
 
-attr(edge, (X,Y), style, dashed) :-
-    edge((X,Y)),
+attr(edge, E, style, dashed) :-
+    edge(E),
+    omitted_edge(E),
+    not violated_edge(E).
+
+omitted_edge((X,Y)) :-
     omitted(link(X,Y)),
-    not violated_edge((X,Y)).
+    X < Y.
+
+omitted_edge((Y,X)) :-
+    omitted(link(X,Y)),
+    Y < X.
 """.strip()
 
 

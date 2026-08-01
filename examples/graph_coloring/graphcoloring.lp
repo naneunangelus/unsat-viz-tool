@@ -4,7 +4,8 @@ notchosenColour(N,C) :- not chosenColour(N,C), node(N), colour(C).
 
 % At least one color per node.
 :- node(X), not colored(X).
-colored(X) :- chosenColour(X,C), node(N), colour(C).
+colored(X) :- chosenColour(X,C), node(X), colour(C).
+% bug : node(N) instead of node(X)
 
 % Only one color per node.
 :- chosenColour(N,C1), chosenColour(N,C2), C1!=C2, node(N), colour(C1), colour(C2). 

@@ -50,6 +50,9 @@ link(1,2).
 ### 2. Encoding
 
 The original ASP encoding.
+ 
+Note: 
+Domain predicates (like node/1 and edge/2 for the graph coloring example) have to appear in every rule body where their variables are used.
 
 Example:
 
@@ -253,3 +256,83 @@ Graph with violated nodes/edges highlighted.
 * The highlighted conflict is not guaranteed to correspond to unique cause of inconsistency.
 * Rule-based explanations are currently available only through intermediate output files.
 * The workflow is not fully automated. Individual pipeline stages must currently be executed manually by the user through separate terminal commands. Example commands for all stages are provided in the pipeline description.
+
+---
+
+## Generating multiple optimal solution explanations
+Following commands are used:
+
+```bash
+python -m unsat_viz_tool.cli solve \
+  --instance examples/graph_coloring/g1.lp \
+  --omission out/graph_coloring/g1/omission/omission_result.lp \
+  --cleaned-encoding out/graph_coloring/g1/transform/cleaned_encoding.lp \
+  --relaxed out/graph_coloring/g1/transform/relaxed.lp \
+  --out-dir out/graph_coloring/g1/solve \
+  --mode diverse-optimal \
+  --max-models 200
+```
+
+Generated:
+```text
+out/graph_coloring/g1/solve/explanation_0/violations.json
+out/graph_coloring/g1/solve/explanation_1/violations.json
+```
+
+
+```bash
+python -m unsat_viz_tool.cli overlay \
+  --meta out/graph_coloring/g1/transform/meta.json \   
+  --violations out/graph_coloring/g1/solve/explanation_0/violations.json \ 
+  --out out/graph_coloring/g1/overlay/explanation_0/overlay.lp
+```
+Generated:
+```text
+out/graph_coloring/g1/overlay/explanation_0/overlay.lp
+```
+
+
+```bash
+python -m unsat_viz_tool.cli overlay \
+  --meta out/graph_coloring/g1/transform/meta.json \   
+  --violations out/graph_coloring/g1/solve/explanation_1/violations.json \ 
+  --out out/graph_coloring/g1/overlay/explanation_1/overlay.lp
+```
+Generated:
+```text
+out/graph_coloring/g1/overlay/explanation_1/overlay.lp
+```
+
+
+```bash
+python -m unsat_viz_tool.cli render \
+  --instance examples/graph_coloring/g1.lp \
+  --omission out/graph_coloring/g1/omission/omission_result.lp \
+  --cleaned-encoding out/graph_coloring/g1/transform/cleaned_encoding.lp \
+  --viz examples/graph_coloring/viz.lp \
+  --overlay out/graph_coloring/g1/overlay/explanation_0/overlay.lp \
+  --out-dir out/graph_coloring/g1/render/explanation_0 \
+  --format png
+```
+
+Generated:
+```text
+out/graph_coloring/g1/render/explanation_0
+```
+
+
+```bash
+python -m unsat_viz_tool.cli render \
+  --instance examples/graph_coloring/g1.lp \
+  --omission out/graph_coloring/g1/omission/omission_result.lp \
+  --cleaned-encoding out/graph_coloring/g1/transform/cleaned_encoding.lp \
+  --viz examples/graph_coloring/viz.lp \
+  --overlay out/graph_coloring/g1/overlay/explanation_1/overlay.lp \
+  --out-dir out/graph_coloring/g1/render/explanation_1 \
+  --format png
+```
+
+Generated:
+```text
+out/graph_coloring/g1/render/explanation_1
+```

@@ -11,6 +11,7 @@ attr(node, X, style, filled) :-
 attr(edge, (X,Y), label, "") :-
     edge((X,Y)).
 
+
 #show node/1.
 #show edge/1.
 #show attr/4.

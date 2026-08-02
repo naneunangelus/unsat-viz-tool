@@ -8,7 +8,7 @@ attr(node, X, label, X) :-
 attr(node, X, style, filled) :-
     node(X).
 
-% attr(node, X, fillcolor, C) :-  chosenColour(X,C).
+attr(node, X, fillcolor, C) :-  chosenColour(X,C).
 
 attr(edge, (X,Y), label, "") :-
     edge((X,Y)).

@@ -24,10 +24,6 @@ attr(node, X, color, red) :-
 attr(node, X, penwidth, 4) :-
     node(X),
     violated_node(X).
-
-attr(node, X, peripheries, 2) :-
-    node(X),
-    violated_node(X).
 """.strip()
 
 OMITTED_STYLE_RULES = """

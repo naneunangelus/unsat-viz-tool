@@ -29,7 +29,7 @@ node(28).
 node(29).
 node(30).
 
-colour(red).
+colour(blue).
 colour(green).
 
 link(1,2).

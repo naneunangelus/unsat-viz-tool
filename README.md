@@ -304,7 +304,7 @@ out/graph_coloring/g1/overlay/explanation_1/overlay.lp
 
 ```bash
 python -m unsat_viz_tool.cli render \
-  --model out/graph_coloring/g1/solve/selected_model.lp \
+  --model out/graph_coloring/g1/solve/explanation_0/selected_model.lp \
   --viz examples/graph_coloring/viz.lp \
   --overlay out/graph_coloring/g1/overlay/explanation_0/overlay.lp \
   --out-dir out/graph_coloring/g1/render/explanation_0 \
@@ -319,7 +319,7 @@ out/graph_coloring/g1/render/explanation_0
 
 ```bash
 python -m unsat_viz_tool.cli render \
-  --model out/graph_coloring/g1/solve/selected_model.lp \
+  --model out/graph_coloring/g1/solve/explanation_1/selected_model.lp \
   --viz examples/graph_coloring/viz.lp \
   --overlay out/graph_coloring/g1/overlay/explanation_1/overlay.lp \
   --out-dir out/graph_coloring/g1/render/explanation_1 \

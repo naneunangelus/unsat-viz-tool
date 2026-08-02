@@ -9,9 +9,9 @@ node(7).
 node(8).
 
 % 3 colors
-colour(red).
-colour(green).
 colour(blue).
+colour(green).
+colour(yellow).
 
 % central K4
 link(1,2).

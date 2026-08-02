@@ -9,10 +9,10 @@ node(5).
 node(6).
 node(7).
 
-colour(red).
-colour(green).
 colour(blue).
+colour(green).
 colour(yellow).
+colour(violet).
 
 % Complete graph on nodes 1..5
 link(1,2).

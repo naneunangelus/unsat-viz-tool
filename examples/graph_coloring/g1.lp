@@ -8,7 +8,7 @@ node(7).
 node(8).
 node(9).
 
-colour(red).
+colour(blue).
 colour(green).
 
 link(6,7).

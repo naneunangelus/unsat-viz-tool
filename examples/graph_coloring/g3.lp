@@ -4,7 +4,7 @@ node(3).
 node(4).
 node(5).
 
-colour(red).
+colour(blue).
 colour(green).
 
 link(1,2).

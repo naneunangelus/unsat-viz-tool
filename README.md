@@ -280,8 +280,8 @@ out/graph_coloring/g1/solve/explanation_1/violations.json
 
 ```bash
 python -m unsat_viz_tool.cli overlay \
-  --meta out/graph_coloring/g1/transform/meta.json \   
-  --violations out/graph_coloring/g1/solve/explanation_0/violations.json \ 
+  --meta out/graph_coloring/g1/transform/meta.json \
+  --violations out/graph_coloring/g1/solve/explanation_0/violations.json \
   --out out/graph_coloring/g1/overlay/explanation_0/overlay.lp
 ```
 Generated:
@@ -292,8 +292,8 @@ out/graph_coloring/g1/overlay/explanation_0/overlay.lp
 
 ```bash
 python -m unsat_viz_tool.cli overlay \
-  --meta out/graph_coloring/g1/transform/meta.json \   
-  --violations out/graph_coloring/g1/solve/explanation_1/violations.json \ 
+  --meta out/graph_coloring/g1/transform/meta.json \
+  --violations out/graph_coloring/g1/solve/explanation_1/violations.json \
   --out out/graph_coloring/g1/overlay/explanation_1/overlay.lp
 ```
 Generated:
@@ -304,9 +304,7 @@ out/graph_coloring/g1/overlay/explanation_1/overlay.lp
 
 ```bash
 python -m unsat_viz_tool.cli render \
-  --instance examples/graph_coloring/g1.lp \
-  --omission out/graph_coloring/g1/omission/omission_result.lp \
-  --cleaned-encoding out/graph_coloring/g1/transform/cleaned_encoding.lp \
+  --model out/graph_coloring/g1/solve/selected_model.lp \
   --viz examples/graph_coloring/viz.lp \
   --overlay out/graph_coloring/g1/overlay/explanation_0/overlay.lp \
   --out-dir out/graph_coloring/g1/render/explanation_0 \
@@ -321,9 +319,7 @@ out/graph_coloring/g1/render/explanation_0
 
 ```bash
 python -m unsat_viz_tool.cli render \
-  --instance examples/graph_coloring/g1.lp \
-  --omission out/graph_coloring/g1/omission/omission_result.lp \
-  --cleaned-encoding out/graph_coloring/g1/transform/cleaned_encoding.lp \
+  --model out/graph_coloring/g1/solve/selected_model.lp \
   --viz examples/graph_coloring/viz.lp \
   --overlay out/graph_coloring/g1/overlay/explanation_1/overlay.lp \
   --out-dir out/graph_coloring/g1/render/explanation_1 \

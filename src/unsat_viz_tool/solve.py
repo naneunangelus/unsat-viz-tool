@@ -6,6 +6,7 @@ import clingo
 
 from .models import Violation, to_jsonable
 
+import shutil
 
 @dataclass(frozen=True)
 class CapturedModel:
@@ -252,14 +253,18 @@ def solve_relaxed_program_one(
 
 def violation_signature(model: CapturedModel) -> tuple[str, ...]:
     """
-    Distinguish explanations using complete grounded violation atoms.
+    Group optimal models by the set of violated rule names.
 
-    Using only the rule name would incorrectly merge violations of the
-    same rule involving different graph elements.
+    Different ground instances of the same relaxed rule belong to the
+    same explanation category.
     """
+    violations = extract_unsat_symbols(model.symbols)
+
     return tuple(
-        violation.atom
-        for violation in extract_unsat_symbols(model.symbols)
+        sorted({
+            violation.name
+            for violation in violations
+        })
     )
 
 
@@ -371,6 +376,10 @@ def write_violations(
             files=files,
             max_models=max_models,
         )
+
+        for old_dir in out_dir.glob("explanation_*"):
+            if old_dir.is_dir():
+                shutil.rmtree(old_dir)
 
         for index, model in enumerate(selected_models):
             explanation_dir = out_dir / f"explanation_{index}"
